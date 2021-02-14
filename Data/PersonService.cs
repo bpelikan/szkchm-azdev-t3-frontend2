@@ -8,12 +8,13 @@ namespace szkchm_azdev_t3_frontend2.Data
     {
         public Task<Person[]> GetPersonAsync(int id)
         {
-            
+            var rng = new Random();
+
             return Task.FromResult(Enumerable.Range(1, 5).Select(index => new Person
             {
                 Id = index,
                 FirstName = "FirstName" + index.ToString(),
-                LastName = "LastName" + index.ToString()
+                LastName = "LastName" + index.ToString() + "-" + rng.Next(1, 20)
             }).ToArray());
         }
     }
