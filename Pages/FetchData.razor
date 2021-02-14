@@ -5,7 +5,7 @@
 
 <p>This component demonstrates fetching data from the server.</p>
 
-@if (forecasts == null || person == null)
+@if (forecasts == null || persons == null)
 {
     <p><em>Loading...</em></p>
 }
@@ -42,23 +42,27 @@ else
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td>@person.Id</td>
-                <td>@person.FirstName</td>
-                <td>@person.LastName</td>
-            </tr>
+            @foreach (var person in persons)
+            {
+                <tr>
+                    <td>@person.Id</td>
+                    <td>@person.FirstName</td>
+                    <td>@person.LastName</td>
+                </tr>
+            }
+            
         </tbody>
     </table>
 }
 
 @code {
     private WeatherForecast[] forecasts;
-    private Person person;
+    private Person[] persons;
 
     protected override async Task OnInitializedAsync()
     {
         forecasts = await Http.GetFromJsonAsync<WeatherForecast[]>("sample-data/weather.json");
-        person = await Http.GetFromJsonAsync<Person>("https://app-azdev-back-t2.azurewebsites.net/users/?id=1");
+        persons = await Http.GetFromJsonAsync<Person[]>("https://app-azdev-back-t2.azurewebsites.net/users");
     }
 
     public class WeatherForecast
