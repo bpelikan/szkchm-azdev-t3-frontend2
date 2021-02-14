@@ -28,6 +28,7 @@ namespace szkchm_azdev_t3_frontend2
             services.AddRazorPages();
             services.AddServerSideBlazor();
             services.AddSingleton<WeatherForecastService>();
+            services.AddSingleton<PersonService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
