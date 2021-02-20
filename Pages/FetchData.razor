@@ -34,42 +34,13 @@ else
     </table>
 }
 
-@if (persons == null)
-{
-    <p><em>Loading persons...</em></p>
-}
-else
-{
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>FirstName</th>
-                <th>LastName</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var person in persons)
-            {
-                <tr>
-                    <td>@person.Id</td>
-                    <td>@person.FirstName</td>
-                    <td>@person.LastName</td>
-                </tr>
-            }
-            
-        </tbody>
-    </table>
-}
-
 @code {
     private WeatherForecast[] forecasts;
-    private Person[] persons;
+
 
     protected override async Task OnInitializedAsync()
     {
         forecasts = await Http.GetFromJsonAsync<WeatherForecast[]>("sample-data/weather.json");
-        persons = await Http.GetFromJsonAsync<Person[]>("https://app-azdev-t2-back.azurewebsites.net/users");
     }
 
     public class WeatherForecast
@@ -81,12 +52,5 @@ else
         public string Summary { get; set; }
 
         public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
-    }
-
-    public class Person
-    {
-        public int Id { get; set; }
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
     }
 }
