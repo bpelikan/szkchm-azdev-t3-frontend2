@@ -69,7 +69,7 @@ else
     protected override async Task OnInitializedAsync()
     {
         forecasts = await Http.GetFromJsonAsync<WeatherForecast[]>("sample-data/weather.json");
-        persons = await Http.GetFromJsonAsync<Person[]>("https://app-azdev-back-t2.azurewebsites.net/users");
+        persons = await Http.GetFromJsonAsync<Person[]>("https://app-azdev-t2-back.azurewebsites.net/users");
     }
 
     public class WeatherForecast
